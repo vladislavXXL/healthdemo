@@ -1,9 +1,6 @@
 package org.healthdemo.controller;
 
-import org.healthdemo.model.Animal;
-import org.healthdemo.model.Cat;
-import org.healthdemo.model.Dog;
-import org.healthdemo.model.Rabbit;
+import org.healthdemo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,16 +13,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @ImportResource(value = "classpath:ioc.xml")
 public class AppController {
-    //WRONG !!!
-    //private Cat cat = new Cat();
+
     private Cat cat;
     private Rabbit rabbit;
     private Dog dog;
     private Animal animal;
+    private SQLRequest sqlRequest;
 
     public AppController(Cat cat, Dog dog) {
         this.cat = cat;
         this.dog = dog;
+    }
+
+    @RequestMapping("/create")
+    public String createTable(Model model) {
+        model.addAttribute("status", sqlRequest.getTableCreationStatus());
+        return "table";
+    }
+
+    @RequestMapping("/dogs/get/count/{name}")
+    public String getDogsCountByName(@PathVariable("name") String name, Model model) {
+        model.addAttribute("name", name);
+        model.addAttribute("info", this.sqlRequest.getCountByName(name));
+        return "dogs";
     }
 
     @RequestMapping("/hello/{name}")
@@ -60,4 +70,8 @@ public class AppController {
         this.animal = animal;
     }
 
+    @Autowired
+    public void setSqlRequest(SQLRequest sqlRequest) {
+        this.sqlRequest = sqlRequest;
+    }
 }

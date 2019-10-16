@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @ImportResource(value = "classpath:ioc.xml")
@@ -36,6 +37,12 @@ public class AppController {
         model.addAttribute("name", name);
         model.addAttribute("info", this.sqlRequest.getCountByName(name));
         return "dogs";
+    }
+
+    @RequestMapping("/dogs/create/{name}/{description}/{color_id}")
+    public String insertNewDog(@PathVariable("name") String name, @PathVariable("description") String description, @PathVariable("color_id") Integer color_id, Model model) {
+        model.addAttribute("create", this.sqlRequest.insertNewRecord(name, description, color_id));
+        return "newdog";
     }
 
     @RequestMapping("/hello/{name}")

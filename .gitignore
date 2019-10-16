@@ -10,6 +10,7 @@ target
 *.iml
 .gradle
 gradle
+build
 
 # BlueJ files
 *.ctxt

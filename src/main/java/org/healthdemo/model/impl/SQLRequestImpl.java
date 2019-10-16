@@ -8,6 +8,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service("sqlRequest")
 public class SQLRequestImpl implements SQLRequest {
     private JdbcTemplate jdbcTemplate;
@@ -36,6 +39,17 @@ public class SQLRequestImpl implements SQLRequest {
         String sql = "select count(*) from dogs where name = :name";
         SqlParameterSource namedParameter = new MapSqlParameterSource("name", name);
         return this.namedParameterJdbcTemplate.queryForObject(sql, namedParameter, Integer.class);
+    }
+
+    @Override
+    public Integer insertNewRecord(String name, String description, Integer color_id) {
+        String sql = "insert into dogs (name, description, color_id) values (:name, :description, :color_id)";
+        Map<String, Object> params = new HashMap<>();
+        params.put("name", name);
+        params.put("description", description);
+        params.put("color_id", color_id);
+        Integer result = this.namedParameterJdbcTemplate.update(sql, params);
+        return result;
     }
 
     @Autowired

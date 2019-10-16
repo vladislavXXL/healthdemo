@@ -10,8 +10,13 @@ public interface SQLRequest {
     String getTableCreationStatus();
 
     /**
-     * @param name specific name of dog
+     * Method to get quantity of records with same name.
+     *
+     * @param name specific name
      * @return count of dog's specific name
      */
     Integer getCountByName(String name);
+
+
+    Integer insertNewRecord(String name, String description, Integer color_id);
 }

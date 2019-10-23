@@ -32,7 +32,9 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.springframework/spring-jdbc
     compile group: 'org.springframework', name: 'spring-jdbc', version: '5.1.9.RELEASE'
+    compile group: 'org.springframework', name: 'spring-orm', version: '5.1.9.RELEASE'
 
+    // spring security
     compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.2.0.RELEASE'
     compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.2.0.RELEASE'
     compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.2.0.RELEASE'
@@ -40,6 +42,11 @@ dependencies {
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.8'
 
+    // hibernate
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.6.Final'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.6.Final'
+
+    // aspectj for AOP
     compile group: 'org.aspectj', name: 'aspectjrt', version: '1.9.2'
     compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.2'
 

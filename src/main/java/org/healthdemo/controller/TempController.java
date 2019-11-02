@@ -1,5 +1,6 @@
 package org.healthdemo.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,5 +25,11 @@ public class TempController {
         model.addAttribute("password", password);
         model.addAttribute("encodePassword", new BCryptPasswordEncoder().encode(password));
         return "password";
+    }
+
+    @RequestMapping("/api/horse")
+    public String getHorsePage(Model model) {
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getName());
+        return "horse";
     }
 }

@@ -45,6 +45,12 @@ public class AppController {
         return "newdog";
     }
 
+    @RequestMapping("/dogs/get/count/{name}/description/{description}")
+    public String getInfo(@PathVariable("name") String name, @PathVariable("description") String description, Model model) {
+        model.addAttribute("count", this.sqlRequest.getInfo(name, description));
+        return "info";
+    }
+
     @RequestMapping("/hello/{name}")
     public String getHelloPage(@PathVariable("name") String name, Model model) {
         model.addAttribute("name", name);

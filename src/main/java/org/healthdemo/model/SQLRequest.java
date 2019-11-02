@@ -17,6 +17,21 @@ public interface SQLRequest {
      */
     Integer getCountByName(String name);
 
-
+    /**
+     * Method to insert new record.
+     *
+     * @param name
+     * @param description
+     * @param color_id
+     * @return
+     */
     Integer insertNewRecord(String name, String description, Integer color_id);
+
+    /**
+     * Method to get info.
+     * @param name
+     * @param description
+     * @return
+     */
+    Integer getInfo(String name, String description);
 }

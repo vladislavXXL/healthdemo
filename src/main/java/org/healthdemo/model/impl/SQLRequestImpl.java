@@ -1,5 +1,6 @@
 package org.healthdemo.model.impl;
 
+import org.apache.catalina.util.ParameterMap;
 import org.healthdemo.model.SQLRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -50,6 +51,16 @@ public class SQLRequestImpl implements SQLRequest {
         params.put("color_id", color_id);
         Integer result = this.namedParameterJdbcTemplate.update(sql, params);
         return result;
+    }
+
+    @Override
+    public Integer getInfo(String name, String description) {
+        String sql = "select count(*) from dogs where name = :name and description = :description";
+        Map<String, String> map = new ParameterMap<>();
+        map.put("name", name);
+        map.put("description", description);
+        SqlParameterSource namedparameters = new MapSqlParameterSource(map);
+        return this.namedParameterJdbcTemplate.queryForObject(sql, namedparameters, Integer.class);
     }
 
     @Autowired

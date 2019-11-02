@@ -1,5 +1,7 @@
 package org.healthdemo.entity;
 
+import org.springframework.stereotype.Controller;
+
 import javax.persistence.*;
 
 @Entity

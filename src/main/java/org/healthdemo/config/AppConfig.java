@@ -1,7 +1,10 @@
 package org.healthdemo.config;
 
+import org.healthdemo.dao.EmployeeDao;
 import org.healthdemo.dao.HorseDao;
+import org.healthdemo.dao.impl.EmployeeDaoImpl;
 import org.healthdemo.dao.impl.HorseDaoImpl;
+import org.healthdemo.entity.Employee;
 import org.healthdemo.entity.Horse;
 import org.healthdemo.model.Dog;
 import org.springframework.context.annotation.Bean;
@@ -20,5 +23,10 @@ public class AppConfig {
     @Bean
     public HorseDao horseDao() {
         return new HorseDaoImpl(Horse.class);
+    }
+
+    @Bean
+    public EmployeeDao employeeDao() {
+        return new EmployeeDaoImpl(Employee.class);
     }
 }
